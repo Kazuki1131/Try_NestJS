@@ -1,7 +1,7 @@
 import { ItemStatus } from './item-status.enum';
 import { Item } from 'src/items/item.model';
 import { ItemsService } from './items.service';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller('items')
 export class ItemsController {
@@ -10,6 +10,11 @@ export class ItemsController {
   @Get()
   findAll(): Item[] {
     return this.itemsService.findAll();
+  }
+
+  @Get(':id')
+  findById(@Param('id') id: string): Item {
+    return this.itemsService.findById(id);
   }
 
   @Post()
