@@ -1,4 +1,4 @@
-import { Item } from 'src/items/item.model';
+import { Item } from 'src/entities/item.entity';
 import { ItemsService } from './items.service';
 import {
   Body,
@@ -27,8 +27,8 @@ export class ItemsController {
   }
 
   @Post()
-  create(@Body() createItemDto: CreateItemDto): Item {
-    return this.itemsService.create(createItemDto);
+  async create(@Body() createItemDto: CreateItemDto): Promise<Item> {
+    return await this.itemsService.create(createItemDto);
   }
 
   @Patch(':id')
